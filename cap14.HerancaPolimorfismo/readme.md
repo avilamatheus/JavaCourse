@@ -184,3 +184,14 @@ y.withdraw(50.0);
 
 The association of the specific type with the generic type is done at runtime (upcasting). The compiler does not know for which specific type the call to the method
 Withdraw is being made (it only knows that there are two variables of type Account).
+
+## Classes e métodos "abstract" / "abstract" classes and methods
+**PT-BR**  
+- abstract class: é uma classe que não pode ser instanciada, ou seja, não pode ser criado um objeto a partir dela. Pode conter métodos abstratos e métodos concretos.
+  - métodos abstratos: são métodos que não possuem implementação, ou seja, não possuem corpo. Eles são declarados com a palavra-chave "abstract".
+  - métodos concretos: são métodos que possuem implementação, ou seja, possuem corpo. Eles são declarados sem a palavra-chave "abstract".
+
+**EN-US**  
+- abstract class: is a class that cannot be instantiated, that is, an object cannot be created from it. It can contain abstract methods and concrete methods.
+  - abstract methods: are methods that have no implementation, that is, they have no body. They are declared with the "abstract" keyword.
+  - concrete methods: are methods that have implementation, that is, they have a body. They are declared without the "abstract" keyword.
