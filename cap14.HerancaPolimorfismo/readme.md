@@ -1,4 +1,4 @@
-# Herança e Polimorfismo
+# Herança e Polimorfismo / Inheritance and Polymorphism
 **PT-BR**  
 Este capítulo aborda os conceitos de herança e polimorfismo em Java, como:
 
