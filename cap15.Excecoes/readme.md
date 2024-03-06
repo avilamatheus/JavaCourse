@@ -77,4 +77,39 @@ public class MyException extends Exception {
 }
 ```
 
+## Try-with-resources
+**PT-BR**  
+- O try-with-resources é uma estrutura que permite a utilização de recursos que devem ser fechados após o término do bloco try, como por exemplo, leitura de arquivos.
+
+**EN-US**  
+- The try-with-resources is a structure that allows the use of resources that must be closed after the end of the try block, such as reading files.
+
+***
+Exemplo sem try-with-resources / Example without try-with-resources:
+```java
+BufferedReader reader = null;
+try {
+    reader = new BufferedReader(new FileReader("file.txt"));
+    System.out.println(reader.readLine());
+} catch (IOException e) {
+    e.printStackTrace();
+} finally {
+    try {
+        if (reader != null) {
+            reader.close();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+```
+Exemplo com try-with-resources / Example with try-with-resources:
+```java
+try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
+    System.out.println(reader.readLine());
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
 
