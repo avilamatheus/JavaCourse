@@ -198,8 +198,138 @@ public static void main(String[] args) {
 		}
 }
 ```
+</details>
 
 
+<details>  
 
+<summary>  
+
+# Consumer
+
+</summary>
+
+## Exemplos de implementação do Consumer / Consumer implementation examples:
+
+1 - Implementação da interface Consumer / Consumer interface implementation:
+```java
+public class PriceUpdate implements Consumer<Product> {
+
+	@Override
+	public void accept(Product p) {
+		p.setPrice(p.getPrice() * 1.1);
+	}
+}
+
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		list.forEach(new PriceUpdate());
+
+		list.forEach(System.out::println);
+}
+```
+
+***
+
+2 - Reference method com método estático / Reference method with static method:
+```java
+
+public class Product {
+
+	/// ... 
+
+	public static void staticPriceUpdate(Product p) {
+		p.setPrice(p.getPrice() * 1.1);
+	}
+
+}
+
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		list.forEach(Product::staticPriceUpdate);
+
+		list.forEach(System.out::println);
+}
+```
+
+***
+
+3 - Reference method com método não estático / Reference method with non-static method:
+```java
+public class Product {
+
+	/// ... 
+
+	public void nonStaticPriceUpdate() {
+		price = price * 1.1;
+	}
+
+}
+
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		list.forEach(Product::nonStaticPriceUpdate);
+
+		list.forEach(System.out::println);
+}
+```
+
+***
+
+4 - Expressão lambda declarada / Declared lambda expression:
+```java
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		double factor = 1.1;
+		Consumer<Product> cons = p -> p.setPrice(p.getPrice() * factor);
+
+		list.forEach(cons);
+
+		list.forEach(System.out::println);
+}
+```
+
+***
+
+5 - Expressão lambda inline / Inline lambda expression:
+```java
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		double factor = 1.1;
+		list.forEach(p -> p.setPrice(p.getPrice() * factor));
+
+		list.forEach(System.out::println);
+}
+```
 
 </details>
