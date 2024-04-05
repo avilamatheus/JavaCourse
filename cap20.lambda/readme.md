@@ -67,6 +67,15 @@ Some examples are Predicate, Consumer, Function and Supplier.
 
 </summary>
 
+## Sintaxe / Syntax:
+
+```java
+public interface Predicate<T> {
+	boolean test(T t);
+}
+```
+
+
 ## Exemplos de implementação de Predicate / Predicate implementation examples:  
 
 1- Implementação da interface Predicate / Predicate interface implementation:
@@ -209,6 +218,15 @@ public static void main(String[] args) {
 
 </summary>
 
+## Sintaxe / Syntax:
+
+```java
+public interface Consumer<T> {
+	void accept(T t);
+}
+```
+
+
 ## Exemplos de implementação do Consumer / Consumer implementation examples:
 
 1 - Implementação da interface Consumer / Consumer interface implementation:
@@ -331,5 +349,157 @@ public static void main(String[] args) {
 		list.forEach(System.out::println);
 }
 ```
+
+</details>
+
+<details>  
+
+<summary>  
+
+# Function
+
+</summary>
+
+## Sintaxe / Syntax:
+
+```java
+public interface Function<T, R> {
+	R apply(T t);
+}
+```
+
+
+## Exemplos de implementação da Function / Function implementation examples:
+
+1 - Implementação da interface Function / Function interface implementation:
+```java
+public class UpperCaseName implements Function<Product, String> {
+
+	@Override
+	public String apply(Product p) {
+		return p.getName().toUpperCase();
+	}
+}
+
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+
+		// A função "map" é uma função que aplica uma função a cada elemento de uma stream.
+		// list.stream() - converte a lista para stream
+		// .collect(Collectors.toList()) - converte a stream para lista
+
+		// The "map" function applies a function to each element of a stream.
+		// list.stream() - converts the list to a stream
+		// .collect(Collectors.toList()) - converts the stream to a list
+		List<String> names = list.stream().map(new UpperCaseName()).collect(Collectors.toList());
+
+		names.forEach(System.out::println);
+}
+```
+
+***
+
+2 - Reference method com método estático / Reference method with static method:
+```java
+public class Product {
+
+	/// ... 
+
+	public static String staticUpperCaseName(Product p) {
+		return p.getName().toUpperCase();
+	}
+
+}
+
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+
+		List<String> names = list.stream().map(Product::staticUpperCaseName).collect(Collectors.toList());
+
+		names.forEach(System.out::println);
+}
+```
+
+***
+
+3 - Reference method com método não estático / Reference method with non-static method:
+```java
+public class Product {
+
+	/// ... 
+
+	public String nonStaticUpperCaseName() {
+		return name.toUpperCase();
+	}
+
+}
+
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+
+		List<String> names = list.stream().map(Product::nonStaticUpperCaseName).collect(Collectors.toList());
+
+		names.forEach(System.out::println);
+}
+```
+
+***
+
+4 - Expressão lambda declarada / Declared lambda expression:
+```java
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		Function<Product, String> func = p -> p.getName().toUpperCase();
+
+		List<String> names = list.stream().map(func).collect(Collectors.toList());
+
+		names.forEach(System.out::println);
+}
+```
+
+***
+
+5 - Expressão lambda inline / Inline lambda expression:
+```java
+public static void main(String[] args) {
+
+		List<Product> list = new ArrayList<>();
+
+		list.add(new Product("TV", 900.00));
+		list.add(new Product("Notebook", 1200.00));
+		list.add(new Product("Tablet", 450.00));
+
+		List<String> names = list.stream().map(p -> p.getName().toUpperCase()).collect(Collectors.toList());
+
+		names.forEach(System.out::println);
+}
+```
+
+
+
 
 </details>
